@@ -1,6 +1,7 @@
 site:
   title: BYU OIT AV // Docs
   url: https://docs.avs.byu.edu
+  start_page: docs::index.adoc
 content:
   sources:
     - url: https://github.com/byuoitav/docs.git

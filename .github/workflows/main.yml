@@ -1,0 +1,28 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: setup npm
+        uses: actions/setup-node@v1
+
+      - name: install antora
+        run: npm i -g @antora/cli@2.1 @antora/site-generator-default@2.1
+
+      - name: checkout code
+        run: actions/checkout@v1
+
+      - name: build
+        run: antora --fetch antora-playbook.yml
+
+      - name: deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v2.5.0
+        env:
+          ACTIONS_DEPLOY_KEY: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+          PUBLISH_BRANCH: gh-pages
+          PUBLISH_DIR: ./build/site

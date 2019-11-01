@@ -20,6 +20,11 @@ jobs:
       - name: build
         run: antora --fetch antora-playbook.yml
 
+      - name: add cname/nojekyll
+        run: |
+          cp ./CNAME ./build/site
+          touch ./build/site/.nojekyll
+
       - name: deploy to gh-pages
         uses: peaceiris/actions-gh-pages@v2.5.0
         env:

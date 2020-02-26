@@ -33,3 +33,5 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./build/site
           publish_branch: gh-pages
+          user_name: byuoitav
+          user_email: oitav@byu.edu

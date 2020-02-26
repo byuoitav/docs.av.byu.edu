@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Untitled :: BYU OIT AV // Docs</title>
+    <link rel="canonical" href="https://docs.av.byu.edu/av-control-api/quickstart/devices.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/vendor/docsearch.min.css">
+<!-- fetched from https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css -->
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://it.byu.edu">BYU OIT AV</a>
+        <span class="separator">//</span>
+        <a href="https://docs.av.byu.edu">Docs</a>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Projects</div>
+          <div class="navbar-dropdown">
+            <div class="navbar-item"><strong>AV Control API</strong></div>
+            <a class="navbar-item" href="https://github.com/byuoitav/av-control-api">Repository</a>
+            <a class="navbar-item" href="https://github.com/byuoitav/av-control-api/issues">Issue Tracker</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://gitlab.com/antora/antora/blob/master/contributing.adoc">Contributing</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Tools</div>
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item" href="https://smee.avs.byu.edu">BYU Monitoring</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://github.com/byuoitav">
+          <span class="icon">
+            <svg aria-hidden="true" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="av-control-api" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AV Control API</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="quickstart.html">Quick Start</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="hardwareSetup.html">Hardware Set Up</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="OS.html">Setting Up the Operating System</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="DB.html">Database</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="devices.html">devices table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="device_type.html">device_type table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rooms.html">rooms table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="buildings.html">buildings table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="room_configurations.html">room_configurations table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="DemoDBScript.html">Demo Couch Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="roles.html">Device Roles</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="startAPI.html">Starting the AV API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="API.html">Using the AV API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="APIBody.html">API Body &amp; Response</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="UI.html">Using the UI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="byuArchitecture.html">Exploring BYU&#8217;s Implementation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">Frequently Asked Questions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../drivers/drivers.html">Drivers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../drivers/drivers.html#_writing_a_driver">Writing a Driver</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../drivers/drivers.html#_creating_a_driver_server">Creating a Driver Server</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AV Control API</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AV Control API</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Hardware</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../hardware/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Lazarette</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../lazarette/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">AV Control API</a></li>
+    <li><a href="quickstart.html">Quick Start</a></li>
+    <li><a href="DB.html">Database</a></li>
+    <li><a href="devices.html">devices table</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/byuoitav/av-control-api/edit/master/docs/modules/quickstart/pages/devices.adoc">Edit this Page</a></div>
+  </div>
+<article class="doc">
+<div class="sect2">
+<h3 id="_devices"><a class="anchor" href="#_devices"></a>devices</h3>
+<div class="paragraph">
+<p>The devices table contains all of the necessary information for the device you are using, this includes the device name, device type,
+IP address of the device, and the roles or capabilities the device has. These fields will be described in greater detail down below.</p>
+</div>
+<div class="paragraph">
+<p>Sample CouchDB Entry for Raspberry Pi device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "_id": "BLDG-RM-CP1", <i class="conum" data-value="1"></i><b>(1)</b>
+  "_rev": "1-1d3b5f66d895b3bb1e9c7e5671488ea1", <i class="conum" data-value="2"></i><b>(2)</b>
+  "name": "CP1", <i class="conum" data-value="3"></i><b>(3)</b>
+  "address": "BLDG-RM-CP1.youruniversity.edu", <i class="conum" data-value="4"></i><b>(4)</b>
+  "description": "BLDG-RM", <i class="conum" data-value="5"></i><b>(5)</b>
+  "display_name": "BLDG-RM", <i class="conum" data-value="6"></i><b>(6)</b>
+  "type": { <i class="conum" data-value="7"></i><b>(7)</b>
+    "_id": "Pi3"
+  },
+  "roles": [ <i class="conum" data-value="8"></i><b>(8)</b>
+    {
+      "_id": "ControlProcessor",
+      "description": "ControlProcessor"
+    },
+    {
+      "_id": "EventRouter",
+      "description": "EventRouter"
+    },
+    {
+      "_id": "Touchpanel",
+      "description": "Touchpanel"
+    }
+  ],
+  "ports": [] <i class="conum" data-value="9"></i><b>(9)</b>
+}</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>"_id"</code>: Unique identifier of JSON Document in CouchDB. An ID is automatically generated when making a new document but can be changed to something
+more readable like "BLDG-RM-CP1" (CP - Control Processor) or any ID of your choice.</p>
+</li>
+<li>
+<p><code>"_rev"</code>: Revision token that is automatically generated by CouchDB. Do not worry about changing this, Couch simply uses this token
+for optimistic-concurrency detection. For more information about this field refer to CouchDB&#8217;s <a href="http://guide.couchdb.org/draft/consistency.html#locking">documentation</a></p>
+</li>
+<li>
+<p><code>"name"</code>: Name of the device.</p>
+</li>
+<li>
+<p><code>"address"</code>: This is the IP address of the device. if you have DNS resolution set up in your organization you can assign a name to the IP address
+abnd use the name as shown in the above example, or you can simply put in the IP address (i.e. 10.254.254.254).</p>
+</li>
+<li>
+<p><code>"description"</code>: Description of the device, this field is for your benefit to include any descriptive information you want stored.</p>
+</li>
+<li>
+<p><code>"display_name"</code>: The name that you want displayed for the device.</p>
+</li>
+<li>
+<p><code>"type"</code>: Type refers to the device type. The "_id" maps back to a document in the device_type database. This will be explained in greater
+detail in the device_type section.</p>
+</li>
+<li>
+<p><code>"roles"</code>: A list of roles that the device has. A complete list of roles and how they relate to each device can be found <a href="roles.html" class="page">here</a>.</p>
+</li>
+<li>
+<p><code>"ports"</code>: A list of the ports on the device. A Pi does not have any ports so the array is empty. This will make more sense in the next device example.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>Sample CouchDB Entry for Sony XBR device:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+  "_id": "BLDG-RM-D1", <i class="conum" data-value="1"></i><b>(1)</b>
+  "_rev": "1-de858339580876573735386f7a4a218e", <i class="conum" data-value="1"></i><b>(1)</b>
+  "name": "D1", <i class="conum" data-value="1"></i><b>(1)</b>
+  "address": "255.255.255.255", <i class="conum" data-value="1"></i><b>(1)</b>
+  "description": "Display 1", <i class="conum" data-value="1"></i><b>(1)</b>
+  "display_name": "Display 1",<i class="conum" data-value="1"></i><b>(1)</b>
+  "type": { <i class="conum" data-value="1"></i><b>(1)</b>
+    "_id": "SonyXBR"
+  },
+  "roles": [ <i class="conum" data-value="1"></i><b>(1)</b>
+    {
+      "_id": "AudioOut",
+      "description": "AudioOut"
+    },
+    {
+      "_id": "VideoOut",
+      "description": "VideoOut"
+    }
+  ],
+  "ports": [ <i class="conum" data-value="2"></i><b>(2)</b>
+    {
+      "_id": "hdmi!2", <i class="conum" data-value="3"></i><b>(3)</b>
+      "friendly_name": "SonyTv HDMI input 2", <i class="conum" data-value="4"></i><b>(4)</b>
+      "source_device": "BLDG-RM-SW1", <i class="conum" data-value="5"></i><b>(5)</b>
+      "destination_device": "BLDG-RM-D2", <i class="conum" data-value="6"></i><b>(6)</b>
+      "description": "SonyTv HDMI input 2" <i class="conum" data-value="7"></i><b>(7)</b>
+    }
+  ]
+}</pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>All of these fields have been explained in the above example</p>
+</li>
+<li>
+<p><code>"ports"</code>: A list of the ports on the device. Each input for the Sony Display that is used will be listed in this array.</p>
+</li>
+<li>
+<p><code>"_id"</code>: ID of the port, "hdmi!2" is the format used in communicating with the Sony XBR display.</p>
+</li>
+<li>
+<p><code>"friendly_name"</code>: What you want the input to be named on the UI</p>
+</li>
+<li>
+<p><code>"source_device"</code>: The source device of the input coming into the TV (i.e. video switcher, computer, HDMI Pass through etc.).
+This is the ID of the document for the source device.</p>
+</li>
+<li>
+<p><code>"destination_device"</code>: The destination device of the incoming input. The source and destination device combined indicate the directionality of the video input.</p>
+</li>
+<li>
+<p><code>"description"</code>: A description of the port, this field is for your benefit to include any descriptive information you want stored.</p>
+</li>
+</ol>
+</div>
+<div class="sect3">
+<h4 id="_up_next"><a class="anchor" href="#_up_next"></a>Up Next:</h4>
+<div class="paragraph">
+<p><a href="device_type.html" class="page">device_type table</a></p>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2019-2020 <a href="https://byu.edu">Brigham Young University</a>.</p>
+  <p>Except where otherwise noted, docs.av.byu.edu are licensed under the <a href="https://www.mozilla.org/en-US/MPL/2.0/">Apache Version 2.0</a></p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

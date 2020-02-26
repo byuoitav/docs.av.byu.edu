@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Quick Start :: BYU OIT AV // Docs</title>
+    <link rel="canonical" href="https://docs.av.byu.edu/av-control-api/quickstart/quickstart.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/vendor/docsearch.min.css">
+<!-- fetched from https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css -->
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://it.byu.edu">BYU OIT AV</a>
+        <span class="separator">//</span>
+        <a href="https://docs.av.byu.edu">Docs</a>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Projects</div>
+          <div class="navbar-dropdown">
+            <div class="navbar-item"><strong>AV Control API</strong></div>
+            <a class="navbar-item" href="https://github.com/byuoitav/av-control-api">Repository</a>
+            <a class="navbar-item" href="https://github.com/byuoitav/av-control-api/issues">Issue Tracker</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://gitlab.com/antora/antora/blob/master/contributing.adoc">Contributing</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Tools</div>
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item" href="https://smee.avs.byu.edu">BYU Monitoring</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://github.com/byuoitav">
+          <span class="icon">
+            <svg aria-hidden="true" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="av-control-api" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AV Control API</a></h3>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="quickstart.html">Quick Start</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="hardwareSetup.html">Hardware Set Up</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="OS.html">Setting Up the Operating System</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="DB.html">Database</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="devices.html">devices table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="device_type.html">device_type table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="rooms.html">rooms table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="buildings.html">buildings table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="room_configurations.html">room_configurations table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="DemoDBScript.html">Demo Couch Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="roles.html">Device Roles</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="startAPI.html">Starting the AV API</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="API.html">Using the AV API</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="APIBody.html">API Body &amp; Response</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="UI.html">Using the UI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="byuArchitecture.html">Exploring BYU&#8217;s Implementation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="FAQ.html">Frequently Asked Questions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../drivers/drivers.html">Drivers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../drivers/drivers.html#_writing_a_driver">Writing a Driver</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../drivers/drivers.html#_creating_a_driver_server">Creating a Driver Server</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AV Control API</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AV Control API</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Hardware</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../hardware/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Lazarette</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../lazarette/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">AV Control API</a></li>
+    <li><a href="quickstart.html">Quick Start</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/byuoitav/av-control-api/edit/master/docs/modules/quickstart/pages/quickstart.adoc">Edit this Page</a></div>
+  </div>
+<article class="doc">
+<h1 class="page">Quick Start</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Here you will find a quick start guide to getting your environment set up to use the av-control-api to communicate with devices in your classroom. For the distribution of our content we use Docker simply for the ease of containerization, distribution, and use for our systems.You are of course able to pull down our repositories, compile the binaries, and launch the microservices independently, but feel free to use our already packaged Docker containers as well. For additional information about Docker please refer to <a href="https://docs.docker.com/engine/docker-overview/">Docker&#8217;s Docs</a>.</p>
+</div>
+<div class="paragraph">
+<p>There are many differrent ways to implement our AV solution in your organization. We will not outline each type of implementation but rather will outline
+the steps to one implementation method and allow others to be creative in how they want to implement our solution in their organization.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_demo_solution"><a class="anchor" href="#_demo_solution"></a>Demo Solution</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For the purpose of this demo we will be setting up a single display room that is controlled by a raspberry pi running the AV-API. The raspberry pi will act as the room&#8217;s control system and be able to control the input being shown on the display as well as the volume of the display. For this demo you will need the following materials:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.raspberrypi.org/products/raspberry-pi-4-model-b/">Raspberry Pi 4 Model B</a></p>
+</li>
+<li>
+<p><a href="https://www.raspberrypi.org/products/raspberry-pi-touch-display/">7-inch Rapsberry Pi Touch Panel</a></p>
+</li>
+<li>
+<p>An IP controllable display (one which we <a href="hardwareList.html" class="page">have already written a driver for</a>)</p>
+<div class="ulist">
+<ul>
+<li>
+<p>For demonstration purposes we will be using a <a href="https://www.sony.com/electronics/televisions/xbr-x800g-x805g-x807g-series">Sony XBR 800G</a></p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>This setup guide should help you get your first room up and running, using the av-control-api to control it and optionally one of our UI&#8217;s. <strong><em>Please Note: The UI was created only for the purposes of this demo, it is not code we use in a production environment</em></strong></p>
+</div>
+<div class="paragraph">
+<p>The basic sections are as follows:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Getting the hardware set up</p>
+</li>
+<li>
+<p>Getting the OS ready</p>
+</li>
+<li>
+<p>Downloading/starting the av-control-api docker containers and (optionally) a basic UI container</p>
+</li>
+<li>
+<p>Setting up the database and configuring your devices</p>
+</li>
+<li>
+<p>Testing the API</p>
+</li>
+<li>
+<p>Using the UI</p>
+</li>
+<li>
+<p>Exploring BYU&#8217;s Implementation</p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_the_hardware_set_up"><a class="anchor" href="#_getting_the_hardware_set_up"></a>Getting the hardware set up</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>For more detailed information on how to set up the devices for this demo please see the <a href="hardwareSetup.html" class="page">Hardware Setup Guide</a>. This guide will also outline any necssary configurations that need to be in place for the AV-API to work.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_getting_the_os_ready"><a class="anchor" href="#_getting_the_os_ready"></a>Getting the OS ready</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To get the Operating System ready to go for this solution you need a raspberry pi with the following installed on it:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>raspbian</p>
+</li>
+<li>
+<p>docker</p>
+</li>
+<li>
+<p>docker-compose</p>
+</li>
+<li>
+<p>web browser</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>For a detailed step-by-step guide to get these installed on your raspberry pi, please refer to the <a href="OS.html" class="page">Complete OS Setup Guide</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_downloading_and_starting_necesary_docker_containers"><a class="anchor" href="#_downloading_and_starting_necesary_docker_containers"></a>Downloading and Starting Necesary Docker Containers</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to get the Pi up and running to control the sample room, the following containers are needed:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>couch-db (for configuration storage)</p>
+</li>
+<li>
+<p>av-api (base api engine)</p>
+</li>
+<li>
+<p>sony-control-microservice (sony adcp protocol translation service)</p>
+</li>
+<li>
+<p>Demo UI</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>We will be using docker-compose to get the required containers up and running on your pi. Please refer to the documentation in <a href="startAPI.html" class="page">Starting the AV API</a> for more detailed steps on how to use docker-compose to get these containers on your device.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setting_up_the_database_and_configuring_your_devices"><a class="anchor" href="#_setting_up_the_database_and_configuring_your_devices"></a>Setting up the database and configuring your devices</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We use CouchDB as the database for our solution. Within CouchDB there are five important tables that are used throughout our solution:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>devices</p>
+</li>
+<li>
+<p>device_type</p>
+</li>
+<li>
+<p>rooms</p>
+</li>
+<li>
+<p>buildings</p>
+</li>
+<li>
+<p>room_configurations</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>The exact documents required for this demo are available by running the python script found in <a href="DemoDBScript.html" class="page">Demo DB Script</a>.</p>
+</div>
+<div class="paragraph">
+<p>For a more detailed documentation on the content of each of these tables, their purpose, and how they relate to each other,
+please refer to the <a href="DB.html" class="page">Complete Database Guide</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_testing_the_api"><a class="anchor" href="#_testing_the_api"></a>Testing the API</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Once you have followed the previous steps, you should be set to begin testing the API. Attempt to hit the API endpoints using a program like
+Postman. If it is successful then you have successfully set up your pi to control the devices in your room. For more detailed documentation
+on how to test the API enpoints please refer to the <a href="API.html" class="page">Complete API Testing Guide</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_using_the_ui"><a class="anchor" href="#_using_the_ui"></a>Using the UI</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that you have the AV-API to control your room, you need an interface to use to interact with it. We have created a simple user interface that can act as an example to how you might implement an interface of your own. <strong><em>Please Note: This interface was created only for the purposes of this demo, it is not code we use in a production environment</em></strong></p>
+</div>
+<div class="paragraph">
+<p>For information on how the UI works click <a href="UI.html" class="page">here</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_exploring_byus_implementation"><a class="anchor" href="#_exploring_byus_implementation"></a>Exploring BYU&#8217;s Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Now that you have a high level understanding of how everything is connected, there are countless ways to implement this solution for your organization. If you would liek to learn more about how Brigham young University has implemented this solution on their campus go <a href="byuArchitecture.html" class="page">here</a>.</p>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2019-2020 <a href="https://byu.edu">Brigham Young University</a>.</p>
+  <p>Except where otherwise noted, docs.av.byu.edu are licensed under the <a href="https://www.mozilla.org/en-US/MPL/2.0/">Apache Version 2.0</a></p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

@@ -1,6 +1,6 @@
 site:
   title: BYU OIT AV // Docs
-  url: https://docs.avs.byu.edu
+  url: https://docs.av.byu.edu
   start_page: av-control-api::index.adoc
 content:
   sources:

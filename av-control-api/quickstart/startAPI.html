@@ -82,7 +82,7 @@
     <a class="nav-link" href="devices.html">devices table</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="device_type.html">device_type table</a>
+    <a class="nav-link" href="device_types.html">device_types table</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="rooms.html">rooms table</a>
@@ -212,10 +212,10 @@
 </div>
 </li>
 <li>
-<p>use the the editor of your choice to add the text below to a file named <code>docker-compose.yml</code></p>
+<p>use the the text editor of your choice to add the text below to a file named <code>docker-compose.yml</code></p>
 </li>
 <li>
-<p>After saving the file, run <code>docker-compose up</code></p>
+<p>After saving the file, run <code>docker-compose up -d</code>. <code>-d</code> will run the docker containers in the background (detached mode).</p>
 </li>
 <li>
 <p>The docker containers are now running. You can verify that the containers are up by using <code>docker ps</code></p>
@@ -269,6 +269,22 @@ services:
         restart: always
         tty: true</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>For those that may not be very familiar with Docker there are a few commands that you should be aware of:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p><code>docker-compose stop</code>: this command with Stops running containers without removing them.</p>
+</li>
+<li>
+<p><code>docker-compose start</code>: This command will start the containers again.</p>
+</li>
+<li>
+<p><strong><em>Warning</em></strong> : Do not use <code>docker-compose down</code>. This not only stops the contaners but also removes the containers. Any changes that are made to the database will be removed as well.</p>
+</li>
+</ol>
 </div>
 <div class="paragraph">
 <p>If you are interested in looking at the code found in each of these containers, the repositories are found below.:</p>

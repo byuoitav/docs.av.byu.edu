@@ -82,7 +82,7 @@
     <a class="nav-link" href="devices.html">devices table</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="device_type.html">device_type table</a>
+    <a class="nav-link" href="device_types.html">device_types table</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="rooms.html">rooms table</a>
@@ -195,6 +195,30 @@
 <article class="doc">
 <h1 class="page">Demo DB Files</h1>
 <div class="paragraph">
+<p>Before running this script you first need to create an admin account for your couch DB. Please follow the steps below to get it set up:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>View your couch DB by going to <code>localhost:5984/_utils</code> on the pi, or <code>[pi-ip-address]:5984/_utils</code> on a computer on the same network.</p>
+</li>
+<li>
+<p>The database currently does not have an admin user, so you will automatically be "logged" in to the DB.</p>
+</li>
+<li>
+<p>Click the user icon on the bottom of the menu on the left side of the screen (please see screenshot below).</p>
+</li>
+<li>
+<p>Add a new admin user with a username of admin and password of "AVAPIPASSWORD". These are the username and password used when running the script to load the DB.</p>
+</li>
+</ol>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/Couch.jpg" alt="Couch DB">
+</div>
+</div>
+<div class="paragraph">
 <p>These files contain the documents you will need for this demo. There are changes that must be made in each of the documents to make it work for your specific device (i.e. IP address).</p>
 </div>
 <div class="paragraph">
@@ -213,7 +237,7 @@
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>The username and password are passed in as arguments when running the script to handle authorization for your db properly (admin and AVAPIPASSWORD are the default username and password. If you want to change it you MUST change it in the <a href="startAPI.html" class="page">docker-compose.yml</a> file as well.).</p>
+<p>The username and password are passed in as arguments when running the script to handle authorization for your db properly (admin and AVAPIPASSWORD are the default username and password. If you want to change it you MUST change it in the <a href="startAPI.html" class="page">docker-compose.yml</a> file and add the admin user to the DB as well following the steps mentioned above).</p>
 </li>
 </ol>
 </div>
@@ -221,7 +245,7 @@
 </ol>
 </div>
 <div class="paragraph">
-<p>After running this script you can view the contents of your database by visiting 'localhost:5984/_utils'</p>
+<p>After running this script you can view the contents of your database by visiting <code>localhost:5984/_utils</code></p>
 </div>
 <div class="paragraph">
 <p>The username and password for your database is mentioned above.</p>

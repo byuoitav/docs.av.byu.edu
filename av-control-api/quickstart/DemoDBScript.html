@@ -219,7 +219,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>These files contain the documents you will need for this demo. There are changes that must be made in each of the documents to make it work for your specific device (i.e. IP address).</p>
+<p>We will now create the DB entries needed for this demo. We will dowload some sample file to kickstart the entries.  But there will be a few changes that must be made in each of the documents to make it work for your specific devices (i.e. IP address).</p>
 </div>
 <div class="paragraph">
 <p>If you already have couch installed and running on port 5894, you can use a script to automatically create the tables and documents required for the demo. Steps for using this script are found below:</p>
@@ -227,13 +227,26 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Download the <a href="https://github.com/byuoitav/DemoCouchDBSetup">Couch_Demo_Set_Up_Script</a> repository from github.</p>
+<p>Download the Couch_Demo_Set_Up_Script from the <a href="https://github.com/byuoitav/DemoCouchDBSetup">Couch_Demo_Set_Up_Script</a> repository in github.</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>From the Raspberry pi you can simply run</p>
+<div class="paragraph">
+<p><code>wget https://raw.githubusercontent.com/byuoitav/DemoCouchDBSetup/master/Couch_Demo_Set_Up_Script.py</code></p>
+</div>
 </li>
 <li>
-<p>navigate to the repository</p>
+<p>This script will download the .json files from the repo and then inject them into the courch DB. If you already have the json files download, it will use the local versions.</p>
+</li>
+</ol>
+</div>
 </li>
 <li>
-<p>Run the following command: <code>python3 Couch_Demo_Set_Up_Script.py admin AVAPIPASSWORD</code></p>
+<p>Run the following command:</p>
+<div class="paragraph">
+<p><code>python3 Couch_Demo_Set_Up_Script.py admin AVAPIPASSWORD</code></p>
+</div>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
@@ -245,7 +258,7 @@
 </ol>
 </div>
 <div class="paragraph">
-<p>After running this script you can view the contents of your database by visiting <code>localhost:5984/_utils</code></p>
+<p>After running this script you can view the contents of your database by visiting <code>localhost:5984/_utils</code> from chromium running on the pi (run <code>chromium-browser</code> from the CLI)</p>
 </div>
 <div class="paragraph">
 <p>The username and password for your database is mentioned above.</p>
@@ -269,6 +282,9 @@
 </div>
 </li>
 </ol>
+</div>
+<div class="paragraph">
+<p><strong><em>Congratulations, at this point you should be able to got to <code>localhost:8081</code> using chromium on the Raspberry Pi to launch the demo UI and test your system.</em></strong></p>
 </div>
 <div class="paragraph">
 <p>If you would like to see the exact contents of the documents created in each of the databases they can be viewed at the url mentioned above or in the <a href="DemoDBTables.html" class="page">Demo DB Tables</a> document.</p>

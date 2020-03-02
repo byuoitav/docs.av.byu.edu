@@ -195,11 +195,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Here you will find a quick start guide to getting your environment set up to use the av-control-api to communicate with devices in your classroom. For the distribution of our content we use Docker simply for the ease of containerization, distribution, and use for our systems.You are of course able to pull down our repositories, compile the binaries, and launch the microservices independently, but feel free to use our already packaged Docker containers as well. For additional information about Docker please refer to <a href="https://docs.docker.com/engine/docker-overview/">Docker&#8217;s Docs</a>.</p>
-</div>
-<div class="paragraph">
-<p>There are many differrent ways to implement our AV solution in your organization. We will not outline each type of implementation but rather will outline
-the steps to one implementation method and allow others to be creative in how they want to implement our solution in their organization.</p>
+<p>This Quick Start guide in intended to help you get a test environment up and running using the av-control-api to communicate with devices in your classroom. The project, and this guide, uses Docker to distribute pre-compiled microservices.  Docker makes it easy to containerize, distribute, and update our systems. You are of course able to pull down the repositories, compile the binaries, and launch the microservices in any way that works for your environment.  But feel free to use the already packaged Docker containers ditributed as part of the project. For additional information about Docker please refer to <a href="https://docs.docker.com/engine/docker-overview/">Docker&#8217;s Docs</a>.</p>
 </div>
 </div>
 </div>
@@ -207,7 +203,7 @@ the steps to one implementation method and allow others to be creative in how th
 <h2 id="_demo_solution"><a class="anchor" href="#_demo_solution"></a>Demo Solution</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For the purpose of this demo we will be setting up a single display room that is controlled by a raspberry pi running the AV-API. The raspberry pi will act as the room&#8217;s control system and be able to control the input being shown on the display as well as the volume of the display. For this demo you will need the following materials:</p>
+<p>For the purpose of this demo we will be setting up a single display room that is controlled by a Raspberry Pi computer running the AV-API. The raspberry pi will act as the room&#8217;s control system and be able to control the input being shown on the display as well as the volume of the display. For this demo you will need the following materials:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -222,7 +218,7 @@ the steps to one implementation method and allow others to be creative in how th
 <div class="ulist">
 <ul>
 <li>
-<p>For demonstration purposes we will be using a <a href="https://www.sony.com/electronics/televisions/xbr-x800g-x805g-x807g-series">Sony XBR 800G</a></p>
+<p>For demonstration purposes we will be using a <a href="https://www.sony.com/electronics/televisions/xbr-x800g-x805g-x807g-series">Sony XBR Series Television (XBR-800G)</a></p>
 </li>
 </ul>
 </div>
@@ -230,10 +226,10 @@ the steps to one implementation method and allow others to be creative in how th
 </ul>
 </div>
 <div class="paragraph">
-<p>This setup guide should help you get your first room up and running, using the av-control-api to control it and optionally one of our UI&#8217;s. <strong><em>Please Note: The UI was created only for the purposes of this demo, it is not code we use in a production environment</em></strong></p>
+<p>This setup guide will help you get your first room up and running. It uses the av-control-api for control and Demo UI. <strong><em>Please Note: The UI was created for the purposes of this demo only, it is not code we intend for use in a production environment</em></strong></p>
 </div>
 <div class="paragraph">
-<p>The basic sections are as follows:</p>
+<p>The guid is broken down into the following sections:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
@@ -241,13 +237,13 @@ the steps to one implementation method and allow others to be creative in how th
 <p>Getting the hardware set up</p>
 </li>
 <li>
-<p>Getting the OS ready</p>
+<p>Getting the Raspberry Pi OS ready</p>
 </li>
 <li>
-<p>Downloading/starting the av-control-api docker containers and (optionally) a basic UI container</p>
+<p>Downloading/starting the code (in the form of docker containers)</p>
 </li>
 <li>
-<p>Setting up the database and configuring your devices</p>
+<p>Setting up the database and configuring your devices and room</p>
 </li>
 <li>
 <p>Testing the API</p>
@@ -266,7 +262,7 @@ the steps to one implementation method and allow others to be creative in how th
 <h2 id="_getting_the_hardware_set_up"><a class="anchor" href="#_getting_the_hardware_set_up"></a>Getting the hardware set up</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>For more detailed information on how to set up the devices for this demo please see the <a href="hardwareSetup.html" class="page">Hardware Setup Guide</a>. This guide will also outline any necssary configurations that need to be in place for the AV-API to work.</p>
+<p>There are only three hardware components for this setup: the Raspbery Pi, a touchscreen and the television.  The TV will need a little configuration to enable it&#8217;s network API.  Please follow the <a href="hardwareSetup.html" class="page">Hardware Setup Guide</a> for more instructions.</p>
 </div>
 </div>
 </div>
@@ -279,16 +275,19 @@ the steps to one implementation method and allow others to be creative in how th
 <div class="ulist">
 <ul>
 <li>
-<p>raspbian</p>
+<p>Raspbian Lite</p>
 </li>
 <li>
-<p>docker</p>
+<p>Docker</p>
 </li>
 <li>
 <p>docker-compose</p>
 </li>
 <li>
-<p>web browser</p>
+<p>Chromium Web Browser</p>
+</li>
+<li>
+<p>i3 Window Manager (minimal windowing envrionment for launching chromium)</p>
 </li>
 </ul>
 </div>

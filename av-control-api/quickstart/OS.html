@@ -196,7 +196,7 @@
 <div class="sect2">
 <h3 id="_getting_the_os_ready"><a class="anchor" href="#_getting_the_os_ready"></a>Getting the OS ready</h3>
 <div class="paragraph">
-<p>To get the Operating System ready to go for this solution you need a raspberry pi with the following installed on it:</p>
+<p>To get the Operating System ready, you need a raspberry pi with the following installed on it:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -224,6 +224,16 @@
 <ul>
 <li>
 <p>Download the 'Raspbian Buster Lite' image <a href="https://www.raspberrypi.org/downloads/raspbian/">here</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Default username password is <code>pi</code> and <code>raspberry</code></p>
+</li>
+<li>
+<p>Feel free to update the OS with the latest patches (<code>sudo apt upgrade</code>)</p>
+</li>
+</ul>
+</div>
 </li>
 <li>
 <p>Using Etcher flash the image to an SD card.</p>
@@ -241,13 +251,13 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>*NOTE: When you are running <code>apt</code> commands you need to run sudo with each of the commands. or run <code>sudo su</code> first and all subsequent commands will be run</p>
+<p>*NOTE: When you are running the following commands you need to prefix each command with <code>sudo</code> if you get a permission error. Alternatively you can run <code>sudo su</code> first and all subsequent commands will be run with "root" priviledges.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_docker"><a class="anchor" href="#_docker"></a>docker</h3>
 <div class="paragraph">
-<p>This section will outline the necessary steps to get docker on your raspberry pi. Here are the commands you run:</p>
+<p>This section will outline the necessary steps to get <a href="https://www.docker.com/why-docker">docker</a> on your raspberry pi. Here are the commands you run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -261,7 +271,7 @@ systemctl enable docker # make sure it starts at login</code></pre>
 <div class="sect2">
 <h3 id="_docker_compose"><a class="anchor" href="#_docker_compose"></a>docker-compose</h3>
 <div class="paragraph">
-<p>This section will outline the necessary steps to get docker-compose on your raspberry pi. Here are the commands you run:</p>
+<p>This section will outline the necessary steps to get <a href="https://docs.docker.com/compose/">docker-compose</a> on your raspberry pi. Here are the commands you run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -276,12 +286,54 @@ reboot</code></pre>
 <div class="sect2">
 <h3 id="_web_browser_and_window_manager"><a class="anchor" href="#_web_browser_and_window_manager"></a>web browser and window manager</h3>
 <div class="paragraph">
-<p>This section will outline the necessary steps to get a web browser and a window manager (i3 and xorg xserver) on your raspberry pi. Here are the commands you run:</p>
+<p>This section will outline the necessary steps to get the chromium web browser and the <a href="https://i3wm.org/">i3 window manager</a> on your raspberry pi. Here are the commands you run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">apt update
-apt install -y chromium-browser i3 xserver-xorg xinit</code></pre>
+apt install -y chromium-browser i3 xserver-xorg xinit
+
+reboot</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once installed, you will need to setup i3 to launch from the console on login.  First we need to create a the config file for i3:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir .i3
+cp etc/i3/config .i3/config</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then you need to create a file called .xinitrc (in the pi user&#8217;s home directory) with the following contents:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>#!/user/bin/env bash
+
+screenshutoff
+exec i3</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Once created, you need to give the file execute permissions:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chmod +x ~/.xinitrc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And last, you need to create a file called .bash_profile (also in the home directory) with the following contents.  This will launch i3 whenever you login as the <code>pi</code> user from the console (not ssh).</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>if [[ -z $DISPLAY &amp;&amp; $(tty) == /dev/tty1 ]]; then
+        startx -- -nocursor
+fi
+
+source ~/.bashrc</pre>
 </div>
 </div>
 </div>

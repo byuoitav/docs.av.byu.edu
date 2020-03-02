@@ -202,26 +202,21 @@
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>ssh into your pi by running <code>ssh [ip-address-of-pi]</code></p>
+<p><code>ssh</code> into the Raspberry Pi by running <code>ssh [ip-address-of-pi]</code></p>
 <div class="olist loweralpha">
 <ol class="loweralpha" type="a">
 <li>
-<p>if there is default username and password the username is "pi" and the password is "raspberry"</p>
+<p>If there is default username and password the username is "pi" and the password is "raspberry"</p>
 </li>
 </ol>
 </div>
 </li>
 <li>
-<p>use the the text editor of your choice to add the text below to a file named <code>docker-compose.yml</code></p>
-</li>
+<p>Use the the text editor of your choice to add the text below to a file named <code>docker-compose.yml</code></p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
 <li>
-<p>After saving the file, run <code>docker-compose up -d</code>. <code>-d</code> will run the docker containers in the background (detached mode).</p>
-</li>
-<li>
-<p>The docker containers are now running. You can verify that the containers are up by using <code>docker ps</code></p>
-</li>
-</ol>
-</div>
+<p>We rcommend creating a sub-directory in your home directory for the following files and tasks.</p>
 <div class="listingblock">
 <div class="content">
 <pre>version: '3'
@@ -262,7 +257,7 @@ services:
         restart: always
         tty: true
     demoUI:
-        image: byuoitav/demoUI:latest
+        image: byuoitav/demoui-arm:latest
         ports:
             - "8081:8081"
         network_mode: "host"
@@ -270,19 +265,34 @@ services:
         tty: true</pre>
 </div>
 </div>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>After saving the file, run <code>docker-compose up -d</code>. The <code>-d</code> attribute will run the docker-compose command in the background (detached mode).</p>
+</li>
+<li>
+<p>The docker containers are now running. You can verify that the containers are up by using <code>docker ps</code></p>
+</li>
+</ol>
+</div>
 <div class="paragraph">
-<p>For those that may not be very familiar with Docker there are a few commands that you should be aware of:</p>
+<p>For those that may not be very familiar with docker-compose there are a few commands that you should be aware of:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p><code>docker-compose stop</code>: this command with Stops running containers without removing them.</p>
+<p><code>docker-compose up</code>: Builds, (re)creates, starts, and attaches to containers for a service. Unless they are already running, this command also starts any linked services</p>
 </li>
 <li>
-<p><code>docker-compose start</code>: This command will start the containers again.</p>
+<p><code>docker-compose start</code>: Starts existing containers for a service.</p>
 </li>
 <li>
-<p><strong><em>Warning</em></strong> : Do not use <code>docker-compose down</code>. This not only stops the contaners but also removes the containers. Any changes that are made to the database will be removed as well.</p>
+<p><code>docker-compose stop</code>: Stops running containers without removing them.</p>
+</li>
+<li>
+<p><strong><em>Warning</em></strong> : Please be careful when you use <code>docker-compose down</code>. This not only stops the contaners but also removes the containers. Any changes that are made to the database will be removed with this command.</p>
 </li>
 </ol>
 </div>
@@ -307,6 +317,9 @@ services:
 </div>
 <div class="paragraph">
 <p>Once you have the couch-db container running, you should be able to access it by going to <code>http://[pi-ip-addr]:5984/_utils</code>  in a web browser, using the ip address of your pi.</p>
+</div>
+<div class="paragraph">
+<p>At this point your Pi should have all the code it needs in order to control your TV.  But now we need to create the database entries that configure how the rooms works and what&#8217;s in it.  These database entries also used by the demo UI tpo build the interface to control the room.</p>
 </div>
 <div class="paragraph">
 <p>You will need to create several databases and documents for a base configuration. These documents will be detailed in the next section: <a href="DB.html" class="page">Complete Database Guide</a></p>

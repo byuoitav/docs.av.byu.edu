@@ -3,6 +3,7 @@ site:
   url: https://docs.av.byu.edu
   start_page: av-control-api::index.adoc
 content:
+  branches: master
   sources:
     - url: https://github.com/byuoitav/av-control-api.git
       start_path: docs

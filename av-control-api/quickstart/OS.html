@@ -75,6 +75,9 @@
     <a class="nav-link" href="OS.html">Setting Up the Operating System</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="startAPI.html">Deploying Docker Containers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
     <a class="nav-link" href="DB.html">Database</a>
 <ul class="nav-list">
@@ -103,11 +106,8 @@
   </li>
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="startAPI.html">Deploying Docker Containers</a>
+    <a class="nav-link" href="API.html">AV API Testing</a>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="API.html">Using the AV API</a>
-  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="APIBody.html">API Body &amp; Response</a>
   </li>
@@ -230,20 +230,20 @@
 <div class="ulist">
 <ul>
 <li>
-<p>If you want to enable ssh by default, now is the time.  With the SD card still connected to your computer, add an empty file called <code>ssh</code> to the <code>boot</code> directory on the SD card.</p>
+<p>If you want to enable ssh by default, now is a good time.  After the image is transferred to the SD card, and the card is still connected to your computer, add an empty file called <code>ssh</code> to the <code>boot</code> directory on the SD card.</p>
 </li>
 </ul>
 </div>
 </li>
 <li>
-<p>Place the SD card into the Pi and connect it to the network and turn in on.</p>
+<p>Place the SD card into the Pi, connect it to the network and turn in on.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>The default username is <code>Pi</code> and the password is <code>raspberry</code></p>
+<p>The default username is <code>pi</code> and the password is <code>raspberry</code></p>
 </li>
 <li>
-<p>On first boot you may need to change keyboard settings and enable ssh (if you haven&#8217;t already).  You can use the built in config utility called <code>raspi-config</code> (run that command after logging in).</p>
+<p>On first boot you may need to change keyboard settings and enable ssh (if you haven&#8217;t already).  You can use the built in config utility called <code>raspi-config</code> to change these settings (and more). Simply run <code>raspi-config</code> after logging in.</p>
 </li>
 </ul>
 </div>
@@ -251,7 +251,7 @@
 </ul>
 </div>
 <div class="paragraph">
-<p>*NOTE: When you are running the following commands you need to prefix each command with <code>sudo</code> if you get a permission error. Alternatively you can run <code>sudo su</code> first and all subsequent commands will be run with "root" priviledges.</p>
+<p>*NOTE: When running most of the commands in this guide, you will need to prefix each command with <code>sudo</code> to avoid permission errors. Alternatively you can run <code>sudo su</code> first and all subsequent commands will be run with "root" priviledges.</p>
 </div>
 </div>
 <div class="sect2">
@@ -297,7 +297,10 @@ reboot</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Once installed, you will need to setup i3 to launch from the console on login.  First we need to create a config file for i3:</p>
+<p>Once i3 is installed, you will need to set it up to launch on login.</p>
+</div>
+<div class="paragraph">
+<p>First we need to create i3&#8217;s config file:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -325,7 +328,7 @@ exec i3</pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And last, you need to create a file called .bash_profile (also in the home directory) with the following contents.  This will launch i3 whenever you login as the <code>pi</code> user from the console (not ssh).</p>
+<p>And last, you need to create a file called .bash_profile (also in the home directory) with the following contents.  This will launch i3 whenever you login as the <code>pi</code> user from the console (but not through ssh).</p>
 </div>
 <div class="listingblock">
 <div class="content">

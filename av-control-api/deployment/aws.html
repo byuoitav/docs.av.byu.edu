@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Deploy to AWS :: BYU OIT AV // Docs</title>
+    <link rel="canonical" href="https://docs.av.byu.edu/av-control-api/deployment/aws.html">
+    <meta name="generator" content="Antora 2.1.2">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/site-extra.css">
+<link rel="stylesheet" href="../../_/css/vendor/docsearch.min.css">
+<!-- fetched from https://cdn.jsdelivr.net/npm/docsearch.js@2/dist/cdn/docsearch.min.css -->
+<link rel="icon" href="../../_/img/favicon.ico" type="image/x-icon">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <div class="navbar-item">
+        <a href="https://it.byu.edu">BYU OIT AV</a>
+        <span class="separator">//</span>
+        <a href="https://docs.av.byu.edu">Docs</a>
+      </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Projects</div>
+          <div class="navbar-dropdown">
+            <div class="navbar-item"><strong>AV Control API</strong></div>
+            <a class="navbar-item" href="https://github.com/byuoitav/av-control-api">Repository</a>
+            <a class="navbar-item" href="https://github.com/byuoitav/av-control-api/issues">Issue Tracker</a>
+            <hr class="navbar-divider">
+            <a class="navbar-item" href="https://gitlab.com/antora/antora/blob/master/contributing.adoc">Contributing</a>
+          </div>
+        </div>
+        <div class="navbar-item has-dropdown is-hoverable">
+          <div class="navbar-link">Tools</div>
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item" href="https://smee.avs.byu.edu">BYU Monitoring</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://github.com/byuoitav">
+          <span class="icon">
+            <svg aria-hidden="true" data-icon="github" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+              <path fill="#57aaee" d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"></path>
+            </svg>
+          </span>
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="av-control-api" data-version="master">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../index.html">AV Control API</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstart/quickstart.html">Quick Start</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart/hardwareSetup.html">Hardware Set Up</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart/OS.html">Setting Up the Operating System</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart/startAPI.html">Deploying Docker Containers</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstart/DB.html">Database</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/devices.html">devices table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/device_types.html">device_types table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/rooms.html">rooms table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/buildings.html">buildings table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/room_configurations.html">room_configurations table</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/DemoDBScript.html">Demo Couch Documents</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/roles.html">Device Roles</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstart/API.html">AV API Testing</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstart/APIBody.html">API Body &amp; Response</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart/UI.html">Using the UI</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart/byuArchitecture.html">Exploring BYU&#8217;s Implementation</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../quickstart/FAQ.html">Frequently Asked Questions</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../drivers/drivers.html">Drivers</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../drivers/drivers.html">Writing a Driver</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../drivers/drivers.html">Creating a Driver Server</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">AV Control API</span>
+    <span class="version">master</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">AV Control API</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Hardware</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../hardware/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Lazarette</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../lazarette/index.html">master</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main>
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../index.html">AV Control API</a></li>
+    <li><a href="aws.html">Deploy to AWS</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/byuoitav/av-control-api/edit/master/docs/modules/deployment/pages/aws.adoc">Edit this Page</a></div>
+  </div>
+<article class="doc">
+<h1 class="page">Deploy to AWS</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>All of our services are deployed into a <a href="https://kubernetes.io/">Kubernetes</a> cluster running in AWS. We use <a href="https://www.terraform.io/">Terraform</a> to store our account and application infrastructure, which when deploying most services, consists of Kubernetes config files, AWS route 53 entries, and IAM policies/roles.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_architecture_overview"><a class="anchor" href="#_architecture_overview"></a>Architecture Overview</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="https://developers.redhat.com/blog/wp-content/uploads/2019/06/5-Using-NGINX-Ingress-Controller.png" alt="AWS Architecture">
+</div>
+</div>
+<div class="paragraph">
+<p>As part of our <a href="https://github.com/byuoitav/aws/">"base" account configuration</a>, we create an NLB that points to an <a href="https://github.com/kubernetes/ingress-nginx">NGINX Ingress Controller</a> pod. When we deploy one of our services with a public URL, a route 53 entry is created that points to the NLB, which then forwards the traffic to NGINX, which routes to the Kubernetes service based on the host, which finally routes traffic to the matching pod.</p>
+</div>
+<div class="paragraph">
+<p>We use <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS Parameter Store</a> to store application secrets.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_deployment_guide"><a class="anchor" href="#_deployment_guide"></a>Deployment guide</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Terraform must be installed</p>
+</li>
+<li>
+<p>Installed and <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html">logged into</a> the aws-cli</p>
+<div class="ulist">
+<ul>
+<li>
+<p>BYU has <a href="https://github.com/byu-oit/awslogin">a tool</a> for us to log into our AWS accounts. Install it using pip, and run <code>awslogin</code>.</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>A text editor (probably vim :))</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_write_terraform_config"><a class="anchor" href="#_write_terraform_config"></a>Write terraform config</h3>
+<div class="paragraph">
+<p>We have <a href="https://github.com/byuoitav/terraform">a few modules</a> to simplify most of the configuration for a deployment. The main decision you need to make is whether your application needs <em>permanent</em> storage or not. If it does, you&#8217;ll use the <code>kubernetes-statefulset</code> module. If not, you&#8217;ll use the <code>kubernetes-deployment</code> module. They are pretty much the same, but the <code>statefulset</code> module adds a few additional options regarding storage. This guide will create a <code>statefulset</code>, but know that a <code>deployment</code> is pretty similar.</p>
+</div>
+<div class="paragraph">
+<p>For the av-control-api, all of the terraform is in one <code>main.tf</code> file in the <code>terraform</code> folder. If you are trying to deploy a different service, you should create a <code>terraform</code> folder, and put a <code>main.tf</code> file into it. At the beginning of every terraform file, you need to add the following block to tell terraform where it should store the resulting state files:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terraform hljs" data-lang="terraform">terraform {
+  backend "s3" {
+    bucket     = "terraform-state-storage-586877430255" <i class="conum" data-value="1"></i><b>(1)</b>
+    lock_table = "terraform-state-lock-586877430255" <i class="conum" data-value="1"></i><b>(1)</b>
+    region     = "us-west-2"
+
+    key = "SOME-UNIQUE-KEY.tfstate" <i class="conum" data-value="2"></i><b>(2)</b>
+  }
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>These values come from our configuration in <a href="https://github.com/byuoitav/aws/blob/master/s3_backend.tf">here</a>. They <em>will</em> be different if you are deploying to a different AWS account.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>Replace <code>SOME-UNIQUE-KEY</code> with something unique across all terraform files deployed into the account. Usually, the name of the service is unique.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After configuring the terraform backend, you need to set up the <code>aws</code> the <code>kubernetes</code> providers. For the kubernetes provider, the cluster endpoint is required, so we have stored the value in AWS Parameter Store. We&#8217;ll talk more about those below.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terraform hljs" data-lang="terraform">provider "aws" {
+  region = "us-west-2"
+}
+
+data "aws_ssm_parameter" "eks_cluster_endpoint" {
+  name = "/eks/av-cluster-endpoint"
+}
+
+provider "kubernetes" {
+  host = data.aws_ssm_parameter.eks_cluster_endpoint.value
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, we&#8217;ll pull any secrets that your application requires from AWS Parameter Store. To put a secret into Parameter Store:
+. Log into AWS
+. Go to <code>Systems Manager</code>
+. Click on <code>Parameter Store</code> on the left
+. Click <code>Create Parameter</code>, and enter the name/value of your secret.
+<strong> If your secret will be used by multiple services, prefix its name with <code>/env/</code>
+</strong> If your secret will only be used by your service, prefix its name with <code>/env/&lt;service name&gt;/</code></p>
+</div>
+<div class="paragraph">
+<p>Once all of your secrets are in Parameter Store, pull all the required values into your terraform by using blocks like these:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terraform hljs" data-lang="terraform">data "aws_ssm_parameter" "secret_name" {
+  name = "/env/&lt;secret-name&gt;"
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now that you have all of your secrets, you can use our terraform modules to create your service.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-terraform hljs" data-lang="terraform">module "statefulset" {
+  source = "github.com/byuoitav/terraform//modules/kubernetes-statefulset"
+
+  // required
+  name                 = "&lt;service-name&gt;" <i class="conum" data-value="1"></i><b>(1)</b>
+  image                = "docker.pkg.github.com/byuoitav/lazarette/lazarette"
+  image_version        = "v0.2.0"
+  container_port       = 8080 <i class="conum" data-value="2"></i><b>(2)</b>
+  repo_url             = "https://github.com/byuoitav/lazarette"
+  storage_mount_path   = "/opt/lazarette" <i class="conum" data-value="3"></i><b>(3)</b>
+  storage_request_size = "25Gi"
+
+  // optional
+  image_pull_secret = "github-docker-registry" <i class="conum" data-value="4"></i><b>(4)</b>
+  public_urls       = ["lazarette-dev.av.byu.edu"]
+  container_env     = {} <i class="conum" data-value="5"></i><b>(5)</b>
+  container_args = [
+    "--port", "8080",
+    "--log-level", "2",
+    "--persist-path", "/opt/lazarette/backup.db",
+    "--persist-interval", data.aws_ssm_parameter.dev_lazarette_interval.value
+  ]
+  ingress_annotations = {} <i class="conum" data-value="6"></i><b>(6)</b>
+}</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>Put <code>-dev</code> at the end of name if this is the dev version of it.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>The port that your service is running on.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Where the storage will be mounted to. This option, and <code>storage_request_size</code> are not present for a deployment.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>This is only required if you are pulling an image from github package registry.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>A map of string &#8594; string that are environment variables for your service.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Annotations to add to the ingress, which will affect the NGINX configuration for your service. See options <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/">here</a>.</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploy_to_aws"><a class="anchor" href="#_deploy_to_aws"></a>Deploy To AWS</h3>
+<div class="paragraph">
+<p>Once you have written your terraform configuration, you need to initialize it by running <code>terraform init</code>. You only need to do this once, or if you ever add any new modules or providers. Finally, run <code>terraform apply</code> to have terraform create your specified resources.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>Copyright (C) 2019-2020 <a href="https://byu.edu">Brigham Young University</a>.</p>
+  <p>Except where otherwise noted, docs.av.byu.edu are licensed under the <a href="https://www.mozilla.org/en-US/MPL/2.0/">Apache Version 2.0</a></p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

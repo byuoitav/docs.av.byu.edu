@@ -362,16 +362,16 @@ provider "kubernetes" {
   image_pull_secret = "github-docker-registry" <i class="conum" data-value="4"></i><b>(4)</b>
   public_urls       = ["roomcontrol.av.byu.edu"] <i class="conum" data-value="5"></i><b>(5)</b>
   container_env     = { <i class="conum" data-value="5"></i><b>(5)</b>
-	DB_USERNAME = data.aws_ssm_parameter.db_address.value
+    DB_USERNAME = data.aws_ssm_parameter.db_address.value
   }
   container_args = [ <i class="conum" data-value="6"></i><b>(6)</b>
     "--port", "8080",
     "--log-level", "2",
     "--some-path", "/opt/ui",
-	"--some-secret", data.aws_ssm_parameter.secret_name.value
+    "--some-secret", data.aws_ssm_parameter.secret_name.value
   ]
   ingress_annotations = { <i class="conum" data-value="7"></i><b>(7)</b>
-	"nginx.ingress.kubernetes.io/proxy-read-timeout" = "3600"
+    "nginx.ingress.kubernetes.io/proxy-read-timeout" = "3600"
   }
 }</code></pre>
 </div>

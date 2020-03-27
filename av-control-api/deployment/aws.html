@@ -143,7 +143,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="aws.html">AWS</a>
+    <a class="nav-link" href="aws.html">Deploy to AWS</a>
   </li>
 </ul>
   </li>
@@ -192,7 +192,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">AV Control API</a></li>
-    <li><a href="aws.html">AWS</a></li>
+    <li><a href="aws.html">Deploy to AWS</a></li>
   </ul>
 </nav>
   <div class="edit-this-page"><a href="https://github.com/byuoitav/av-control-api/edit/master/docs/modules/deployment/pages/aws.adoc">Edit this Page</a></div>
@@ -202,7 +202,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>All of our services are deployed into a <a href="https://kubernetes.io/">Kubernetes</a> cluster running in AWS. We use <a href="https://www.terraform.io/">Terraform</a> to store our account and application infrastructure, which when deploying most services, consists of Kubernetes config files, AWS route 53 entries, and IAM policies/roles.</p>
+<p>All of our applications are deployed into a <a href="https://kubernetes.io/">Kubernetes</a> cluster running in AWS. We use <a href="https://www.terraform.io/">Terraform</a> to write our account and application infrastructure which, when deploying most applications, consists of Kubernetes config files, Route 53 entries, and IAM policies/roles.</p>
 </div>
 </div>
 </div>
@@ -215,7 +215,7 @@
 </div>
 </div>
 <div class="paragraph">
-<p>As part of our <a href="https://github.com/byuoitav/aws/">"base" account configuration</a>, we create an NLB that points to an <a href="https://github.com/kubernetes/ingress-nginx">NGINX Ingress Controller</a> pod. When we deploy one of our services with a public URL, a route 53 entry is created that points to the NLB, which then forwards the traffic to NGINX, which routes to the Kubernetes service based on the host, which finally routes traffic to the matching pod.</p>
+<p>All traffic coming into kubernetes cluster goes through an NLB that points to a <a href="https://github.com/kubernetes/ingress-nginx">NGINX Ingress Controller</a> pod running in the cluster. Part of deploying an application is creating an <a href="https://kubernetes.io/docs/concepts/services-networking/ingress/">ingress</a> that causes the NGINX Ingress Controller to update it&#8217;s config then and route traffic to the <a href="https://kubernetes.io/docs/concepts/services-networking/service/">service</a> associated with a pod. When a public URL is defined (part of our deployment modules, which we&#8217;ll discuss below), a Route 53 entry is created that points to the NLB.</p>
 </div>
 <div class="paragraph">
 <p>We use <a href="https://docs.aws.amazon.com/systems-manager/latest/userguide/systems-manager-parameter-store.html">AWS Parameter Store</a> to store application secrets.</p>
@@ -230,31 +230,34 @@
 <div class="ulist">
 <ul>
 <li>
-<p>Terraform must be installed</p>
+<p>A text editor</p>
 </li>
 <li>
-<p>Installed and <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html">logged into</a> the aws-cli</p>
+<p>Have the <a href="https://learn.hashicorp.com/terraform/getting-started/install.html">Terraform CLI installed</a></p>
+</li>
+<li>
+<p>Have AWS API credentials configured/saved. You can do this by <a href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-install.html">installing the AWS CLI</a> and running <code>aws configure</code></p>
 <div class="ulist">
 <ul>
 <li>
-<p>BYU has <a href="https://github.com/byu-oit/awslogin">a tool</a> for us to log into our AWS accounts. Install it using pip, and run <code>awslogin</code>.</p>
+<p>For BYU employees, we have <a href="https://github.com/byu-oit/awslogin">a tool</a> to help us to log into our AWS accounts. Install it and run <code>awslogin</code>.</p>
 </li>
 </ul>
 </div>
-</li>
-<li>
-<p>A text editor (probably vim :))</p>
 </li>
 </ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_write_terraform_config"><a class="anchor" href="#_write_terraform_config"></a>Write terraform config</h3>
+<h3 id="_write_infrastructure"><a class="anchor" href="#_write_infrastructure"></a>Write Infrastructure</h3>
 <div class="paragraph">
-<p>We have <a href="https://github.com/byuoitav/terraform">a few modules</a> to simplify most of the configuration for a deployment. The main decision you need to make is whether your application needs <em>permanent</em> storage or not. If it does, you&#8217;ll use the <code>kubernetes-statefulset</code> module. If not, you&#8217;ll use the <code>kubernetes-deployment</code> module. They are pretty much the same, but the <code>statefulset</code> module adds a few additional options regarding storage. This guide will create a <code>statefulset</code>, but know that a <code>deployment</code> is pretty similar.</p>
+<p>We have <a href="https://github.com/byuoitav/terraform">a few modules</a> to simplify most of the code for a deployment. The main decision you need to make is whether your application needs <em>permanent</em> storage or not. If it does, you&#8217;ll use the <a href="https://github.com/byuoitav/terraform/tree/master/modules/kubernetes-statefulset">Kubernetes StatefulSet</a> module. If not, you&#8217;ll use the <a href="https://github.com/byuoitav/terraform/tree/master/modules/kubernetes-deployment">Kubernetes Deployment</a> module. They are pretty much the same, but the <code>StatefulSet</code> module adds additional options regarding storage ("Storage" in this case is an EBS Volume). This guide will create a <code>StatefulSet</code>, but creating a <code>Deployment</code> is pretty similar. You can learn more about <a href="https://kubernetes.io/docs/concepts/workloads/controllers/deployment/">Deployments</a> and <a href="https://kubernetes.io/docs/concepts/workloads/controllers/statefulset/">StatefulSets</a> in Kubernetes' concepts documentation.</p>
 </div>
 <div class="paragraph">
-<p>For the av-control-api, all of the terraform is in one <code>main.tf</code> file in the <code>terraform</code> folder. If you are trying to deploy a different service, you should create a <code>terraform</code> folder, and put a <code>main.tf</code> file into it. At the beginning of every terraform file, you need to add the following block to tell terraform where it should store the resulting state files:</p>
+<p>For the <code>av-control-api</code>, all of the terraform for the core API, as well as the driver servers, is in <code>terraform/main.tf</code>. If you are trying to deploy a different application, you should create a <code>terraform</code> folder at the root of the repo, with a <code>main.tf</code> file in it.</p>
+</div>
+<div class="paragraph">
+<p>In every terraform configuration, you need to add the following block to tell terraform where it should <a href="https://www.terraform.io/docs/backends/index.html">store and load infrastructure state</a>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -273,16 +276,16 @@
 <table>
 <tr>
 <td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>These values come from our configuration in <a href="https://github.com/byuoitav/aws/blob/master/s3_backend.tf">here</a>. They <em>will</em> be different if you are deploying to a different AWS account.</td>
+<td>These values come from BYU&#8217;s configuration <a href="https://github.com/byuoitav/aws/blob/master/s3_backend.tf">here</a>. They <strong><em>will</em></strong> be different if you are deploying to a different AWS account.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>Replace <code>SOME-UNIQUE-KEY</code> with something unique across all terraform files deployed into the account. Usually, the name of the service is unique.</td>
+<td>Replace <code>SOME-UNIQUE-KEY</code> with something unique across all terraform configurations deployed into your account.</td>
 </tr>
 </table>
 </div>
 <div class="paragraph">
-<p>After configuring the terraform backend, you need to set up the <code>aws</code> the <code>kubernetes</code> providers. For the kubernetes provider, the cluster endpoint is required, so we have stored the value in AWS Parameter Store. We&#8217;ll talk more about those below.</p>
+<p>After configuring the terraform backend, you need to set up the <code>aws</code> the <code>kubernetes</code> providers. For the kubernetes provider, the cluster endpoint is required, so we have stored the value in AWS Parameter Store. We&#8217;ll talk more about pulling values from AWS Parameter store below.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -300,52 +303,76 @@ provider "kubernetes" {
 </div>
 </div>
 <div class="paragraph">
-<p>Next, we&#8217;ll pull any secrets that your application requires from AWS Parameter Store. To put a secret into Parameter Store:
-. Log into AWS
-. Go to <code>Systems Manager</code>
-. Click on <code>Parameter Store</code> on the left
-. Click <code>Create Parameter</code>, and enter the name/value of your secret.
-<strong> If your secret will be used by multiple services, prefix its name with <code>/env/</code>
-</strong> If your secret will only be used by your service, prefix its name with <code>/env/&lt;service name&gt;/</code></p>
+<p>Next, we&#8217;ll pull any secrets that your application requires from AWS Parameter Store. To put a secret into Parameter Store:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Log into AWS</p>
+</li>
+<li>
+<p>Go to <code>Systems Manager</code></p>
+</li>
+<li>
+<p>Select <code>Parameter Store</code> on the left sidebar</p>
+</li>
+<li>
+<p>Click <code>Create Parameter</code>, and enter the name/value of the secret.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>If the secret will be used by <em>multiple</em> applications, prefix its name with <code>/env/</code></p>
+</li>
+<li>
+<p>If the secret will <em>only be used by your applications</em>, prefix its name with <code>/env/&lt;application-name&gt;/</code></p>
+</li>
+</ul>
+</div>
+</li>
+</ol>
 </div>
 <div class="paragraph">
-<p>Once all of your secrets are in Parameter Store, pull all the required values into your terraform by using blocks like these:</p>
+<p>Once all of your secrets are in Parameter Store, pull all the required values into terraform by using blocks like these:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-terraform hljs" data-lang="terraform">data "aws_ssm_parameter" "secret_name" {
-  name = "/env/&lt;secret-name&gt;"
+  name = "/env/&lt;application-name&gt;/&lt;secret-name&gt;"
 }</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>Now that you have all of your secrets, you can use our terraform modules to create your service.</p>
+<p>Now that you have all of your secrets, you can use our terraform modules to create your application.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-terraform hljs" data-lang="terraform">module "statefulset" {
+<pre class="highlightjs highlight"><code class="language-terraform hljs" data-lang="terraform">module "ui_prd" {
   source = "github.com/byuoitav/terraform//modules/kubernetes-statefulset"
 
-  // required
-  name                 = "&lt;service-name&gt;" <i class="conum" data-value="1"></i><b>(1)</b>
-  image                = "docker.pkg.github.com/byuoitav/lazarette/lazarette"
-  image_version        = "v0.2.0"
+  // required variables
+  name                 = "&lt;application-name&gt;" <i class="conum" data-value="1"></i><b>(1)</b>
+  image                = "docker.pkg.github.com/byuoitav/ui/ui"
+  image_version        = "v0.5.0"
   container_port       = 8080 <i class="conum" data-value="2"></i><b>(2)</b>
-  repo_url             = "https://github.com/byuoitav/lazarette"
-  storage_mount_path   = "/opt/lazarette" <i class="conum" data-value="3"></i><b>(3)</b>
+  repo_url             = "https://github.com/byuoitav/ui"
+  storage_mount_path   = "/opt/ui" <i class="conum" data-value="3"></i><b>(3)</b>
   storage_request_size = "25Gi"
 
-  // optional
+  // optional variables
   image_pull_secret = "github-docker-registry" <i class="conum" data-value="4"></i><b>(4)</b>
-  public_urls       = ["lazarette-dev.av.byu.edu"]
-  container_env     = {} <i class="conum" data-value="5"></i><b>(5)</b>
-  container_args = [
+  public_urls       = ["roomcontrol.av.byu.edu"] <i class="conum" data-value="5"></i><b>(5)</b>
+  container_env     = { <i class="conum" data-value="5"></i><b>(5)</b>
+	DB_USERNAME = data.aws_ssm_parameter.db_address.value
+  }
+  container_args = [ <i class="conum" data-value="6"></i><b>(6)</b>
     "--port", "8080",
     "--log-level", "2",
-    "--persist-path", "/opt/lazarette/backup.db",
-    "--persist-interval", data.aws_ssm_parameter.dev_lazarette_interval.value
+    "--some-path", "/opt/ui",
+	"--some-secret", data.aws_ssm_parameter.secret_name.value
   ]
-  ingress_annotations = {} <i class="conum" data-value="6"></i><b>(6)</b>
+  ingress_annotations = { <i class="conum" data-value="7"></i><b>(7)</b>
+	"nginx.ingress.kubernetes.io/proxy-read-timeout" = "3600"
+  }
 }</code></pre>
 </div>
 </div>
@@ -357,23 +384,31 @@ provider "kubernetes" {
 </tr>
 <tr>
 <td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>The port that your service is running on.</td>
+<td>The port that your application runs on.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Where the storage will be mounted to. This option, and <code>storage_request_size</code> are not present for a deployment.</td>
+<td>Where the EBS volume will be mounted. This option and <code>storage_request_size</code> are not present for a deployment.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>This is only required if you are pulling an image from github package registry.</td>
+<td>This is the name of a <a href="https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/#create-a-secret-by-providing-credentials-on-the-command-line">kubernetes secret</a> of type <code>kubernetes.io/dockerconfigjson</code>. This is only required if you are pulling an image from a private docker registry.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>A map of string &#8594; string that are environment variables for your service.</td>
+<td>A list public hosts to reach your application. If left empty or omitted, the application will only be accessible from within the cluster.</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Annotations to add to the ingress, which will affect the NGINX configuration for your service. See options <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/">here</a>.</td>
+<td>Defines environment variables for your application.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>Defines arguments passed to your application.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>Annotations added to the Kubernetes Ingress, which will affect the NGINX configuration. See options <a href="https://kubernetes.github.io/ingress-nginx/user-guide/nginx-configuration/annotations/">here</a>.</td>
 </tr>
 </table>
 </div>
@@ -381,7 +416,20 @@ provider "kubernetes" {
 <div class="sect2">
 <h3 id="_deploy_to_aws"><a class="anchor" href="#_deploy_to_aws"></a>Deploy To AWS</h3>
 <div class="paragraph">
-<p>Once you have written your terraform configuration, you need to initialize it by running <code>terraform init</code>. You only need to do this once, or if you ever add any new modules or providers. Finally, run <code>terraform apply</code> to have terraform create your specified resources.</p>
+<p>Once you have written your terraform configuration, you need to initialize it by running:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">terraform init</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You only need to do this once, or if you ever add any new modules or providers. Finally, have terraform create the resources you have defined by running:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">terraform apply</code></pre>
+</div>
 </div>
 </div>
 </div>

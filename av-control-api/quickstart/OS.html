@@ -244,22 +244,47 @@
 </div>
 </li>
 <li>
-<p>Place the SD card into the Pi, connect it to the network and turn in on.</p>
+<p>Place the SD card into the Pi, connect it to the network and turn it on.</p>
 <div class="ulist">
 <ul>
+<li>
+<p>Having a keyboard connected to your Pi for these initial steps, might make things a little easier.  However, if you are familiar with ssh, most of this tutorial can be done using a remote shell (with the exception of launching the UI once you are ready)</p>
+</li>
 <li>
 <p>The default username is <code>pi</code> and the password is <code>raspberry</code></p>
 </li>
 <li>
-<p>On first boot you may need to change keyboard settings and enable ssh (if you haven&#8217;t already).  You can use the built in config utility called <code>raspi-config</code> to change these settings (and more). Simply run <code>raspi-config</code> after logging in.</p>
+<p>On first boot you will want to use the <code>raspi-config</code> utility to change a few things.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>By default, the Raspberry Pi is configured for English (UK). You should change your keyboard layout for your locale (or you may find your keyboard entering characters you didn&#8217;t expect).</p>
+</li>
+<li>
+<p>You can also enable ssh through this config tool (if you haven&#8217;t already).</p>
+</li>
+<li>
+<p>To find these settings (and more) simply run <code>raspi-config</code> after logging in.  For more help with this tool, you can visit the <a href="https://www.raspberrypi.org/documentation/configuration/raspi-config.md">help page</a> found on the Raspberry Pi site.</p>
 </li>
 </ul>
 </div>
 </li>
 </ul>
 </div>
-<div class="paragraph">
-<p>*NOTE: When running most of the commands in this guide, you will need to prefix each command with <code>sudo</code> to avoid permission errors. Alternatively you can run <code>sudo su</code> first and all subsequent commands will be run with "root" priviledges.</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+When running most of the commands in this guide, you will need to have elevated permissions.  The simplest way to do this is to type <code>sudo</code> before each command. Alternatively, you can run the <code>sudo su</code> command and then all subsequent commands will be run with "root" priviledges.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
@@ -313,7 +338,7 @@ reboot</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir .i3
-cp etc/i3/config .i3/config</code></pre>
+cp /etc/i3/config .i3/config</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -332,11 +357,11 @@ exec i3</pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chmod +x ~/.xinitrc</code></pre>
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">chmod +x .xinitrc</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>And last, you need to create a file called .bash_profile (also in the home directory) with the following contents.  This will launch i3 whenever you login as the <code>pi</code> user from the console (but not through ssh).</p>
+<p>And last, you need to create a file called .bash_profile (also in the pi user&#8217;s home directory) with the following contents.  This will launch i3 whenever you login as the <code>pi</code> user from the console (but not through ssh).</p>
 </div>
 <div class="listingblock">
 <div class="content">
